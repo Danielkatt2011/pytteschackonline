@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171923">
+  <title>Pytte-schack Online</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="config.js"></script>
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div>
+        <p class="eyebrow">ONLINE MULTIPLAYER</p>
+        <h1>Pytte-schack</h1>
+      </div>
+      <button id="rulesButton" class="quiet">Regler</button>
+    </header>
+
+    <section id="lobby" class="panel lobby">
+      <h2>Spela online</h2>
+      <p class="muted">Skapa ett rum och dela rumskoden med en vän.</p>
+      <button id="createButton" class="primary">Skapa spelrum</button>
+      <div class="join">
+        <input id="roomInput" maxlength="6" placeholder="RUMSKOD" autocomplete="off" aria-label="Rumskod">
+        <button id="joinButton">Gå med</button>
+      </div>
+      <p id="lobbyStatus" class="status" role="status"></p>
+    </section>
+
+    <section id="game" class="game hidden">
+      <div class="gamebar panel">
+        <div>
+          <span class="muted small">RUMSKOD</span>
+          <strong id="roomCode">------</strong>
+        </div>
+        <button id="copyButton" class="quiet">Kopiera kod</button>
+        <button id="leaveButton" class="quiet">Lämna</button>
+      </div>
+      <div class="statusline panel">
+        <span id="turnText">Väntar på spelare…</span>
+        <span id="connectionText" class="muted small">Ansluter…</span>
+      </div>
+      <div class="board-wrap panel">
+        <div class="player-label"><span class="dot white"></span> Vit <span id="whiteCaptured" class="captured"></span></div>
+        <div id="board" class="board" aria-label="Spelbräde"></div>
+        <div class="player-label"><span class="dot black"></span> Svart <span id="blackCaptured" class="captured"></span></div>
+      </div>
+      <div class="below panel">
+        <p id="gameMessage" class="muted">Vit börjar. Ta motståndarens kung för att vinna.</p>
+        <button id="newGameButton" class="quiet hidden">Spela igen</button>
+      </div>
+    </section>
+
+    <dialog id="rulesDialog">
+      <h2>Regler</h2>
+      <ul>
+        <li>Brädet är 5 × 6 rutor.</li>
+        <li>Vit börjar. Spelarna turas om att göra drag.</li>
+        <li>Du vinner genom att slå motståndarens kung.</li>
+        <li>Bönder som når sista raden blir damer.</li>
+        <li>Schack, rockad och en passant ingår inte.</li>
+      </ul>
+      <button id="closeRules" class="primary">Stäng</button>
+    </dialog>
+  </main>
+</body>
+</html>
